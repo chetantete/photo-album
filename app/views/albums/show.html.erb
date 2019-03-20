@@ -1,0 +1,27 @@
+<h5> Album: <%= @album.name %> </h5>
+<hr>
+<% unless @album.photos.blank? %>
+  <h1>Album Photos</h1>
+  <table class="table table-striped">
+    <tr>
+      <th>Id</th>
+      <th>Image</th>
+      <th>Tagline</th>
+      <th>Owner</th>
+      <th>Created at</th>
+    </tr>
+   
+    <% @album.photos.each do |photo| %>
+      <tr>
+        <td><%= photo.id %></td>
+        <td><%= image_tag photo.image(:thumb) %></td>
+        <td><%= photo.tagline %></td>
+        <td><%= current_user.username %></td>
+        <td><%= photo.created_at.strftime("%d-%m-%Y") %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% else %>
+  <h5>No photos available!!</h5>
+<% end %>

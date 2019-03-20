@@ -1,0 +1,26 @@
+adapter_config: &adapter_config
+  adapter: mysql2
+  encoding: utf8
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+
+development:
+  <<: *adapter_config
+  database: photo_album_development
+  username: root
+  password: root
+  
+test:
+  <<: *adapter_config
+  database: photo_album_development
+  username: root
+  password: root
+
+production:
+  <<: *adapter_config
+  database: photo_album_production
+  username: root
+  password: root
+  

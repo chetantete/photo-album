@@ -1,0 +1,20 @@
+<% unless @photos.blank? %> 
+  <h5>Gallary Photos</h5>
+  <table class="table table-striped">
+    <tr>
+      <th>Sr.No</th>
+      <th>Image</th>
+      <th>Owner</th>
+    </tr>
+   
+    <% @photos.each_with_index do |photo, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= image_tag photo.image(:thumb) %></td>
+        <td><%= photo.album.user.username %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h5>No photos available!!</h5>
+<% end %> 

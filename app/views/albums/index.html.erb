@@ -1,0 +1,26 @@
+
+<%= link_to 'Create Album', new_user_album_path(current_user), class: "btn btn-info" %>
+<br><hr>
+<% unless @albums.blank? %> 
+<h5>Listing Albums</h5>
+  <table class="table table-striped">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Show</th>
+      <th>Delete</th>
+    </tr>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.id %></td>
+        <td><%= album.name %></td>
+        <td><%= link_to 'show', user_album_path(current_user, album) %></td>
+        <td><%= link_to 'delete', user_album_path(current_user, album),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h5>No photos available!!</h5>
+<% end %> 

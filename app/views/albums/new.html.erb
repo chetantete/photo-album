@@ -1,0 +1,35 @@
+
+<h2>Add a album:</h2>
+<%= form_with(model: [ current_user, current_user.albums.build ], local: true) do |form| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@album.errors.count, "error") %> prohibited
+        this album from being saved:
+      </h2>
+      <ul>
+        <% @album.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name, :required => true %>
+  </p>
+  <p>
+
+  <h3>Photos</h3>
+  <div id='albums'>
+    <%= form.fields_for :photos do |photo| %>
+      <%= render 'photo_fields', :form => photo %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association 'add photos', form, :photos %>
+    </div>
+  </div>
+    <%= form.submit %>
+  </p>
+<% end %>
+ 
